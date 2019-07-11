@@ -1,0 +1,17 @@
+package model;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("FieldType")
+public enum FieldType {
+	ACCESS_PERMIT_STATUS,
+    ACCESS_PERMIT_NAME,
+    ACCESS_PERMIT_DATE_TIME,
+    ACCESS_PERMIT_ANSWERS,
+    SAFETY_DOCUMENT_REV_NO,
+    ACCESS_PERMIT_PREV_STATE,
+    ACCESS_PERMIT_DENYING_REASON,
+	ACCESS_PERMIT_EQUIPMENT,
+	ACCESS_PERMIT_POINTS,
+	ACCESS_PERMIT_PHONE_NO,
+}
