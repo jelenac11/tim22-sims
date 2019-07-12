@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Data>
+  <transitions>
+    <Transition transitionId="1">
+      <lifecycleName>Draft to Submit</lifecycleName>
+      <transitionOnSucceed>2</transitionOnSucceed>
+      <transitionOnFail>1</transitionOnFail>
+    </Transition>
+    <Transition transitionId="2">
+      <lifecycleName>Submit to Approve</lifecycleName>
+      <transitionOnSucceed>4</transitionOnSucceed>
+      <transitionOnFail>2</transitionOnFail>
+    </Transition>
+    <Transition transitionId="3">
+      <lifecycleName>Submit to Deny</lifecycleName>
+      <transitionOnSucceed>3</transitionOnSucceed>
+      <transitionOnFail>2</transitionOnFail>
+    </Transition>
+    <Transition transitionId="4">
+      <lifecycleName>Submit to Cancel</lifecycleName>
+      <transitionOnSucceed>5</transitionOnSucceed>
+      <transitionOnFail>2</transitionOnFail>
+    </Transition>
+    <Transition transitionId="5">
+      <lifecycleName>Approve to Complete</lifecycleName>
+      <transitionOnSucceed>6</transitionOnSucceed>
+      <transitionOnFail>4</transitionOnFail>
+    </Transition>
+    <Transition transitionId="6">
+      <lifecycleName>Deny to Cancel</lifecycleName>
+      <transitionOnSucceed>5</transitionOnSucceed>
+      <transitionOnFail>3</transitionOnFail>
+    </Transition>
+    <Transition transitionId="7">
+      <lifecycleName>Cancel to Complete</lifecycleName>
+      <transitionOnSucceed>6</transitionOnSucceed>
+      <transitionOnFail>5</transitionOnFail>
+    </Transition>
+    <Transition transitionId="8">
+      <lifecycleName>Submit to Complete</lifecycleName>
+      <transitionOnSucceed>6</transitionOnSucceed>
+      <transitionOnFail>2</transitionOnFail>
+    </Transition>
+    <Transition transitionId="9">
+      <lifecycleName>Cancel to Submit</lifecycleName>
+      <transitionOnSucceed>2</transitionOnSucceed>
+      <transitionOnFail>5</transitionOnFail>
+    </Transition>
+  </transitions>
+  <states>
+    <State stateId="1">
+      <lifecycleName>Init state</lifecycleName>
+      <displayName>Draft</displayName>
+      <stateSemantic>
+        <Semantic>SaveEnabled</Semantic>
+      </stateSemantic>
+      <stateTransitions>
+        <int>1</int>
+      </stateTransitions>
+      <stateDenyModifyingFields>
+        <FieldType>ACCESS_PERMIT_ANSWERS</FieldType>
+        <FieldType>ACCESS_PERMIT_DENYING_REASON</FieldType>
+      </stateDenyModifyingFields>
+      <stateHideFields>
+        <FieldType>ACCESS_PERMIT_PREV_STATE</FieldType>
+        <FieldType>ACCESS_PERMIT_EQUIPMENT</FieldType>
+      </stateHideFields>
+      <stateMandatoryFields>
+        <FieldType>ACCESS_PERMIT_NAME</FieldType>
+        <FieldType>ACCESS_PERMIT_STATUS</FieldType>
+        <FieldType>SAFETY_DOCUMENT_REV_NO</FieldType>
+      </stateMandatoryFields>
+    </State>
+    <State stateId="2">
+      <lifecycleName>Submit</lifecycleName>
+      <displayName>Submited</displayName>
+      <stateSemantic>
+        <Semantic>SaveEnabled</Semantic>
+        <Semantic>DeleteEnabled</Semantic>
+      </stateSemantic>
+      <stateTransitions>
+        <int>2</int>
+        <int>3</int>
+        <int>4</int>
+        <int>8</int>
+      </stateTransitions>
+      <stateDenyModifyingFields>
+        <FieldType>ACCESS_PERMIT_STATUS</FieldType>
+        <FieldType>SAFETY_DOCUMENT_REV_NO</FieldType>
+      </stateDenyModifyingFields>
+      <stateHideFields>
+        <FieldType>ACCESS_PERMIT_ANSWERS</FieldType>
+        <FieldType>ACCESS_PERMIT_DENYING_REASON</FieldType>
+      </stateHideFields>
+      <stateMandatoryFields>
+        <FieldType>ACCESS_PERMIT_EQUIPMENT</FieldType>
+        <FieldType>ACCESS_PERMIT_PHONE_NO</FieldType>
+      </stateMandatoryFields>
+    </State>
+    <State stateId="3">
+      <lifecycleName>Deny</lifecycleName>
+      <displayName>Denied</displayName>
+      <stateSemantic>
+        <Semantic>SaveEnabled</Semantic>
+        <Semantic>DeleteEnabled</Semantic>
+      </stateSemantic>
+      <stateTransitions>
+        <int>6</int>
+      </stateTransitions>
+      <stateDenyModifyingFields>
+        <FieldType>ACCESS_PERMIT_PHONE_NO</FieldType>
+      </stateDenyModifyingFields>
+      <stateHideFields>
+        <FieldType>ACCESS_PERMIT_EQUIPMENT</FieldType>
+        <FieldType>ACCESS_PERMIT_DATE_TIME</FieldType>
+        <FieldType>SAFETY_DOCUMENT_REV_NO</FieldType>
+        <FieldType>ACCESS_PERMIT_POINTS</FieldType>
+      </stateHideFields>
+      <stateMandatoryFields>
+        <FieldType>ACCESS_PERMIT_ANSWERS</FieldType>
+      </stateMandatoryFields>
+    </State>
+    <State stateId="4">
+      <lifecycleName>Approve</lifecycleName>
+      <displayName>Approved</displayName>
+      <stateSemantic>
+        <Semantic>SaveEnabled</Semantic>
+      </stateSemantic>
+      <stateTransitions>
+        <int>5</int>
+      </stateTransitions>
+      <stateDenyModifyingFields>
+        <FieldType>ACCESS_PERMIT_DATE_TIME</FieldType>
+      </stateDenyModifyingFields>
+      <stateHideFields>
+        <FieldType>ACCESS_PERMIT_DENYING_REASON</FieldType>
+        <FieldType>SAFETY_DOCUMENT_REV_NO</FieldType>
+        <FieldType>ACCESS_PERMIT_PHONE_NO</FieldType>
+      </stateHideFields>
+      <stateMandatoryFields>
+        <FieldType>ACCESS_PERMIT_EQUIPMENT</FieldType>
+        <FieldType>ACCESS_PERMIT_ANSWERS</FieldType>
+      </stateMandatoryFields>
+    </State>
+    <State stateId="5">
+      <lifecycleName>Cancel</lifecycleName>
+      <displayName>Cancelled</displayName>
+      <stateSemantic>
+        <Semantic>SaveEnabled</Semantic>
+      </stateSemantic>
+      <stateTransitions>
+        <int>7</int>
+        <int>9</int>
+      </stateTransitions>
+      <stateDenyModifyingFields>
+        <FieldType>ACCESS_PERMIT_STATUS</FieldType>
+      </stateDenyModifyingFields>
+      <stateHideFields>
+        <FieldType>ACCESS_PERMIT_DENYING_REASON</FieldType>
+        <FieldType>ACCESS_PERMIT_ANSWERS</FieldType>
+        <FieldType>ACCESS_PERMIT_PREV_STATE</FieldType>
+        <FieldType>ACCESS_PERMIT_DATE_TIME</FieldType>
+      </stateHideFields>
+      <stateMandatoryFields>
+        <FieldType>ACCESS_PERMIT_POINTS</FieldType>
+      </stateMandatoryFields>
+    </State>
+    <State stateId="6">
+      <lifecycleName>Complete</lifecycleName>
+      <displayName>Completed</displayName>
+      <stateSemantic>
+        <Semantic>DeleteEnabled</Semantic>
+      </stateSemantic>
+      <stateTransitions/>
+      <stateDenyModifyingFields>
+        <FieldType>SAFETY_DOCUMENT_REV_NO</FieldType>
+        <FieldType>ACCESS_PERMIT_STATUS</FieldType>
+      </stateDenyModifyingFields>
+      <stateHideFields>
+        <FieldType>ACCESS_PERMIT_DENYING_REASON</FieldType>
+        <FieldType>ACCESS_PERMIT_PHONE_NO</FieldType>
+        <FieldType>ACCESS_PERMIT_PREV_STATE</FieldType>
+      </stateHideFields>
+      <stateMandatoryFields>
+        <FieldType>ACCESS_PERMIT_EQUIPMENT</FieldType>
+        <FieldType>ACCESS_PERMIT_POINTS</FieldType>
+      </stateMandatoryFields>
+    </State>
+  </states>
+</Data>
